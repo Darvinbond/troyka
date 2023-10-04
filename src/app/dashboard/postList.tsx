@@ -120,7 +120,10 @@ function PostList() {
                 <td className="px-6 py-4 ">
                   <div className="flex flex items-center h-full gap-[5px] max-w-[300px] scrollbar-hide  overflow-x-auto w-ful justify-start">
                     {blog.tags.map((tag, index) => (
-                      <div className="flex border-2 items-center border-[#fc6719] bg-[#fc68195e] font-[600] w-max px-[10px] py-[2px] rounded-[8px] justify-between gap-[10px] text-black text-[10px]">
+                      <div
+                        key={index}
+                        className="flex border-2 items-center border-[#fc6719] bg-[#fc68195e] font-[600] w-max px-[10px] py-[2px] rounded-[8px] justify-between gap-[10px] text-black text-[10px]"
+                      >
                         <span>{tag}</span>
                       </div>
                     ))}
@@ -133,13 +136,14 @@ function PostList() {
                 </td>
                 <td className="flex items-center px-6 py-4 space-x-3">
                   <Popup
-                    children={<CreateEditPost data={blog} is_create={false} />}
                     clickElement={
                       <span className="font-medium text-blue-600 hover:underline">
                         Edit
                       </span>
                     }
-                  />
+                  >
+                    <CreateEditPost data={blog} is_create={false} />
+                  </Popup>
                   <span
                     onClick={() => {
                       dispatch(deleteBlog(blog.id));

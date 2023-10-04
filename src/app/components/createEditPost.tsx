@@ -50,7 +50,7 @@ function CreateEditPost({ data, is_create }: CreateEditProps) {
     watch,
     reset,
     formState: { errors },
-  } = useForm<PostData>({
+  } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
       title: "",
@@ -70,7 +70,7 @@ function CreateEditPost({ data, is_create }: CreateEditProps) {
     }
   }, []);
 
-  const onSubmit: SubmitHandler<PostData> = (data) => {
+  const onSubmit = (data: any) => {
     const today = new Date();
 
     const formattedDate = format(today, "MMMM d, yyyy");
@@ -80,7 +80,7 @@ function CreateEditPost({ data, is_create }: CreateEditProps) {
     reset();
   };
 
-  const onEditSubmit: SubmitHandler<PostData> = (Editdata) => {
+  const onEditSubmit = (Editdata: any) => {
     setloading(true);
 
     const today = new Date();
@@ -118,8 +118,8 @@ function CreateEditPost({ data, is_create }: CreateEditProps) {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      setValue("tags", [...watch("tags"), taginputValue]);
-      console.log(...watch("tags"), taginputValue);
+      setValue("tags", [...watch("tags")!, taginputValue]);
+      console.log(...watch("tags")!, taginputValue);
       settagInputValue("");
     }
   };
@@ -127,12 +127,14 @@ function CreateEditPost({ data, is_create }: CreateEditProps) {
   const removeTag = (index: number) => {
     setValue(
       "tags",
-      watch("tags").filter((tag, indx) => indx != index)
+      watch("tags")!.filter((tag, indx) => indx != index)
     );
   };
 
   return (
-    <form onSubmit={handleSubmit(is_create ? onSubmit : onEditSubmit)}>
+    <form
+      onSubmit={is_create ? handleSubmit(onSubmit) : handleSubmit(onEditSubmit)}
+    >
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="flex flex-col justify-start w-full gap-[20px]">
@@ -253,8 +255,11 @@ function CreateEditPost({ data, is_create }: CreateEditProps) {
                   placeholder="Click enter to add tag"
                 />
                 <div className="flex justify-start items-center gap-[10px] mt-2">
-                  {[...watch("tags")].map((tag, index) => (
-                    <div className="flex border-2 items-center border-[#fc6719] bg-[#fc68195e] font-[600] text-[12px] w-max px-[10px] py-[5px] rounded-[8px] justify-between gap-[10px] text-black">
+                  {[...watch("tags")!].map((tag, index) => (
+                    <div
+                      key={index}
+                      className="flex border-2 items-center border-[#fc6719] bg-[#fc68195e] font-[600] text-[12px] w-max px-[10px] py-[5px] rounded-[8px] justify-between gap-[10px] text-black"
+                    >
                       <span>{tag}</span>
                       <button
                         onClick={(e) => {

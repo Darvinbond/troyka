@@ -33,10 +33,11 @@ export default function Blog() {
     return results;
   }
 
+  
+  const blogData = useSelector((state: RootState) => state.blog);
+
   const collectrecipeBlogData = () => {
     const searchQuery = searchParams.get("searchQuery");
-
-    const blogData = useSelector((state: RootState) => state.blog);
 
     const filteredBlogData = searchQuery
       ? searchItems(blogData, searchQuery)

@@ -50,18 +50,6 @@ function BlogGridItem({
         <div className="absolute z-50 h-max top-[10px] left-[10px] bg-white bg-opacity-50 rounded-full flex gap-2 items-center justify-start px-[10px] py-[5px] backdrop-blur-sm">
           <span className="h-[30px] aspect-square p-2 bg-transparent hover:bg-[whitesmoke] hover:text-blue-500 transition-all duration-300 cursor-pointer rounded-full flex justify-center items-center">
             <Popup
-              children={
-                <CreateEditPost
-                  is_create={false}
-                  data={{
-                    id: id,
-                    title: title,
-                    tags: tags,
-                    content: content,
-                    img_url: img_url,
-                  }}
-                />
-              }
               clickElement={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +66,18 @@ function BlogGridItem({
                   />
                 </svg>
               }
-            />
+            >
+              <CreateEditPost
+                is_create={false}
+                data={{
+                  id: id,
+                  title: title,
+                  tags: tags,
+                  content: content,
+                  img_url: img_url,
+                }}
+              />
+            </Popup>
           </span>
 
           <span

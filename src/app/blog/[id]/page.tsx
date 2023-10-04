@@ -128,60 +128,59 @@ export default function BlogPreviewPage({}: Props) {
                       </svg>
                     </div>
                   }
-                  children={
-                    <form
-                      onSubmit={handleSubmit(onSubmit)}
-                      className="flex flex-col gap-[20px]"
-                    >
-                      <div className="flex flex-col justify-start w-full gap-[20px]">
-                        <span className="text-[35px] font-[700]">
-                          Say something
-                        </span>
-                      </div>
-                      <div>
-                        <textarea
-                          className="outline-none w-full border rounded-[8px] p-[10px]"
-                          rows={10}
-                          {...register("comment")}
-                        />
-                        <span className="text-xs text-red-500">
-                          {errors.comment && errors.comment.message}
-                        </span>
-                      </div>
-                      <div className="flex justify-end items-center">
-                        <Button
-                          text={
-                            commentLoading ? (
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                className="w-6 h-6 animate-spin"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                                />
-                              </svg>
-                            ) : (
-                              "Comment"
-                            )
-                          }
-                          className="!bg-[#1d4e4b] text-white"
-                        />
-                      </div>
-                    </form>
-                  }
                   is_open={is_open}
-                />
+                >
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex flex-col gap-[20px]"
+                  >
+                    <div className="flex flex-col justify-start w-full gap-[20px]">
+                      <span className="text-[35px] font-[700]">
+                        Say something
+                      </span>
+                    </div>
+                    <div>
+                      <textarea
+                        className="outline-none w-full border rounded-[8px] p-[10px]"
+                        rows={10}
+                        {...register("comment")}
+                      />
+                      <span className="text-xs text-red-500">
+                        {errors.comment && errors.comment.message}
+                      </span>
+                    </div>
+                    <div className="flex justify-end items-center">
+                      <Button
+                        text={
+                          commentLoading ? (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              className="w-6 h-6 animate-spin"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                              />
+                            </svg>
+                          ) : (
+                            "Comment"
+                          )
+                        }
+                        className="!bg-[#1d4e4b] text-white"
+                      />
+                    </div>
+                  </form>
+                </Popup>
               </div>
               <div className="h-[400px] w-full overflow-y-auto">
                 <div className="h-max w-full flex gap-[10px] flex-col p-[20px]">
                   {comments.reverse().map((comment, index, array) => (
-                    <div className="flex gap-[10px] h-max items-center w-max">
+                    <div key={index} className="flex gap-[10px] h-max items-center w-max">
                       <div>
                         <div className="w-[50px] aspect-square rounded-full bg-gray-100 justify-center items-center flex">
                           ?

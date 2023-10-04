@@ -64,7 +64,7 @@ export default function Home() {
           <Image src={Cook2} alt="Picture of the author" placeholder="blur" />
           <div className="absolute text-gray-50 flex flex-col w-max h-[250px] items-center justify-between text-center">
             <span className="font-[700] max-w-[300px] text-[40px]">
-              Sprinkle, food's best friend.
+              Sprinkle, food&apos;s best friend.
             </span>
             <span className="font-[300] w-full max-w-[250px] text-[16px]">
               Why bother when you can easily mix up a batch at home.
