@@ -2,15 +2,20 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import BlogGridItem from "./components/blogGridItem";
+// import BlogGridItem from "./components/blogGridItem";
 import Button from "../components/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import BlogListItem from "./components/blogListItem";
+// import BlogListItem from "./components/blogListItem";
 import { useSelector } from "react-redux";
-import { RootState } from "../GlobalRedux/store";
-import { blogProp } from "../GlobalRedux/reducers/blogReducers";
+import { RootState } from "../../GlobalRedux/store";
+import dynamic from "next/dynamic";
+import { blogProp } from "../../GlobalRedux/reducers/blogReducers";
 
 export default function Blog() {
+  const BlogGridItem = dynamic(() => import("./components/blogGridItem"), {
+    ssr: false,
+  });
+  
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -33,7 +38,6 @@ export default function Blog() {
     return results;
   }
 
-  
   const blogData = useSelector((state: RootState) => state.blog);
 
   const collectrecipeBlogData = () => {
@@ -208,14 +212,8 @@ export default function Blog() {
               isListView ? "" : "grid-cols-4"
             } auto-rows-min gap-y-[40px] gap-x-[20px]`}
           >
-            {recipeBlogData.map((data) => (
-              <>
-                {isListView ? (
-                  <BlogListItem {...data} />
-                ) : (
-                  <BlogGridItem {...data} />
-                )}
-              </>
+            {recipeBlogData.map((data, index) => (
+              <BlogGridItem key={index} {...data} type_is_grid={!isListView} />
             ))}
           </div>
         ) : (

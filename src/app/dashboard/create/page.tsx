@@ -1,3 +1,5 @@
+// "use client";
+
 import CreateEditPost from "../../components/createEditPost";
 
 function Create() {

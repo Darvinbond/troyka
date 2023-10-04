@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import Popup from "@/app/components/popup";
 import CreateEditPost from "@/app/components/createEditPost";
 import { useDispatch } from "react-redux";
-import { deleteBlog } from "@/app/GlobalRedux/reducers/blogReducers";
+import { deleteBlog } from "@/GlobalRedux/reducers/blogReducers";
 import { useRouter } from "next/navigation";
 import { Link } from "react-router-dom";
 

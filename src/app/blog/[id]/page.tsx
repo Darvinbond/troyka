@@ -1,7 +1,7 @@
 "use client";
 
-import { blogProp, commentBlog } from "@/app/GlobalRedux/reducers/blogReducers";
-import { RootState } from "@/app/GlobalRedux/store";
+import { blogProp, commentBlog } from "@/GlobalRedux/reducers/blogReducers";
+import { RootState } from "@/GlobalRedux/store";
 import Button from "@/app/components/button";
 import Popup from "@/app/components/popup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -180,7 +180,10 @@ export default function BlogPreviewPage({}: Props) {
               <div className="h-[400px] w-full overflow-y-auto">
                 <div className="h-max w-full flex gap-[10px] flex-col p-[20px]">
                   {comments.reverse().map((comment, index, array) => (
-                    <div key={index} className="flex gap-[10px] h-max items-center w-max">
+                    <div
+                      key={index}
+                      className="flex gap-[10px] h-max items-center w-max"
+                    >
                       <div>
                         <div className="w-[50px] aspect-square rounded-full bg-gray-100 justify-center items-center flex">
                           ?

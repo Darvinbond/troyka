@@ -14,6 +14,7 @@ function Popup({
   is_open?: boolean;
   clickElement: ReactNode;
 }) {
+  
   const [open, setOpen] = useState(is_open == undefined ? false : is_open);
 
   const cancelButtonRef = useRef(null);

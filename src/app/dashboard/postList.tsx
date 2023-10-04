@@ -11,16 +11,21 @@ import {
   addBlog,
   blogProp,
   deleteBlog,
-} from "../GlobalRedux/reducers/blogReducers";
+} from "../../GlobalRedux/reducers/blogReducers";
 import { format } from "date-fns";
-import { RootState } from "../GlobalRedux/store";
+import { RootState } from "../../GlobalRedux/store";
 import Image from "next/image";
 import Popup from "../components/popup";
-import CreateEditPost from "../components/createEditPost";
+import dynamic from "next/dynamic";
+// import CreateEditPost from "../components/createEditPost";
 
 function PostList() {
   const collectrecipeBlogData = useSelector((state: RootState) => state.blog);
   const dispatch = useDispatch();
+  
+  const CreateEditPost = dynamic(() => import("../components/createEditPost"), {
+    ssr: false,
+  });
 
   const recipeBlogData = [...collectrecipeBlogData].sort(
     (a: blogProp[0], b: blogProp[0]) => {

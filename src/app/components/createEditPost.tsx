@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { addBlog, updateBlog } from "../GlobalRedux/reducers/blogReducers";
+import { addBlog, updateBlog } from "../../GlobalRedux/reducers/blogReducers";
 import { format } from "date-fns";
 
 type PostData = {
