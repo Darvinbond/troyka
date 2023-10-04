@@ -6,7 +6,7 @@ import Button from "../components/button";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "Yup";
+import * as yup from "yup";
 import {
   addBlog,
   blogProp,
