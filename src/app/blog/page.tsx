@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import Tabs from "./components/tabs";
-import Salt from "../../assets/images/salt1.jpg";
 import Image from "next/image";
 import BlogGridItem from "./components/blogGridItem";
 import Button from "../components/button";
@@ -10,12 +8,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import BlogListItem from "./components/blogListItem";
 import { useSelector } from "react-redux";
 import { RootState } from "../GlobalRedux/store";
-import { parse, compareDesc } from "date-fns";
 import { blogProp } from "../GlobalRedux/reducers/blogReducers";
 
-type Props = {};
-
-export default function blog({}: Props) {
+export default function Blog() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
